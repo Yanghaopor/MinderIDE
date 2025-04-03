@@ -1,5 +1,5 @@
 # MinderIDE
-基于https://github.com/Yanghaopor/ITSQL_Backend_framework框架的AI智能IDE，现在只属于测试版本
+基于 https://github.com/Yanghaopor/ITSQL_Backend_framework 框架的AI智能IDE，现在只属于测试版本
 
 # 介绍
 此IDE当前只能生成对应的语言文件，可以自行运行
