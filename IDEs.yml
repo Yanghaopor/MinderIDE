@@ -1,0 +1,570 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: IDEs
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.7@11ec0b1909200f62b6ebf2cec1da981a9071d11c1ee0e2ef332ce89bcffa2544
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1743131144388-source-1743131148273-target
+      source: '1743131144388'
+      sourceHandle: source
+      target: '1743131148273'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1743131148273-source-1743131570095-target
+      source: '1743131148273'
+      sourceHandle: source
+      target: '1743131570095'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1743131570095-source-1743131680984-target
+      source: '1743131570095'
+      sourceHandle: source
+      target: '1743131680984'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1743131680984-source-1743132165432-target
+      source: '1743131680984'
+      sourceHandle: source
+      target: '1743132165432'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 1743132165432-source-1743132252733-target
+      source: '1743132165432'
+      sourceHandle: source
+      target: '1743132252733'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1743132252733-false-1743132787623-target
+      source: '1743132252733'
+      sourceHandle: 'false'
+      target: '1743132787623'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1743132252733-true-17431329100300-target
+      source: '1743132252733'
+      sourceHandle: 'true'
+      target: '17431329100300'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 17431329100300-source-17431329151490-target
+      source: '17431329100300'
+      sourceHandle: source
+      target: '17431329151490'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 17431329197680-source-1743132771595-target
+      source: '17431329197680'
+      sourceHandle: source
+      target: '1743132771595'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 17431329151490-source-17431329197680-target
+      source: '17431329151490'
+      sourceHandle: source
+      target: '17431329197680'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: input
+          max_length: 65536
+          options: []
+          required: true
+          type: paragraph
+          variable: input
+        - label: Logerger
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: Logerger
+      height: 116
+      id: '1743131144388'
+      position:
+        x: 79
+        y: 282
+      positionAbsolute:
+        x: 79
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743131144388'
+          - input
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 7a962514-746d-4b94-bbd0-1b422f95d302
+          role: system
+          text: '{{#context#}}
+
+            #定位
+
+            **你是无情的代码机器，根据每一行的用户代码生成对应{{#1743131144388.Logerger#}}语言的代码，然后进行输出，此为你将无任何废话。
+
+            '
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1743131148273'
+      position:
+        x: 364
+        y: 282
+      positionAbsolute:
+        x: 364
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743131148273'
+          - text
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: c3e8fcb5-5b7c-4ad8-a696-548a826f207d
+          role: system
+          text: '#定位
+
+            {{#context#}}
+
+            **你是无情的代码注释机器，你会在原先的基础上添加注释，此为你什么都不会做'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1743131570095'
+      position:
+        x: 651
+        y: 282
+      positionAbsolute:
+        x: 651
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743131570095'
+          - text
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: c57f812a-b540-4783-ae0b-4edf2db50dfb
+          role: system
+          text: '#定位
+
+            {{#context#}}
+
+            **你是基于前面代码为运行基础的机器，你将模拟运行，如果出错误或者成功将以json格式返回3个值(errer:如果错误就为true不然false。text为原代码，ErrerTex:错误信息。如果没有就为空)'
+        selected: false
+        title: LLM 3
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1743131680984'
+      position:
+        x: 942.1486983549971
+        y: 282
+      positionAbsolute:
+        x: 942.1486983549971
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        parameters:
+        - description: errer信息
+          name: errer
+          required: false
+          type: string
+        - description: 提取ErrerText信息
+          name: ErrerText
+          required: false
+          type: string
+        query:
+        - '1743131680984'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1743132165432'
+      position:
+        x: 1204
+        y: 282
+      positionAbsolute:
+        x: 1204
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: ac9f4b58-c67d-4934-89a1-90356a220054
+            value: 'true'
+            varType: string
+            variable_selector:
+            - '1743132165432'
+            - errer
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 126
+      id: '1743132252733'
+      position:
+        x: 1494.502415058564
+        y: 282
+      positionAbsolute:
+        x: 1494.502415058564
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1743131144388'
+          - Logerger
+          variable: Logerger
+        - value_selector:
+          - '17431329151490'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 116
+      id: '1743132771595'
+      position:
+        x: 2606.184744180649
+        y: 282
+      positionAbsolute:
+        x: 2606.184744180649
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1743131144388'
+          - Logerger
+          variable: Logerger
+        - value_selector:
+          - '1743131570095'
+          - text
+          variable: text
+        selected: false
+        title: 结束 2
+        type: end
+      height: 116
+      id: '1743132787623'
+      position:
+        x: 1787.4181798305758
+        y: 467.70704238216547
+      positionAbsolute:
+        x: 1787.4181798305758
+        y: 467.70704238216547
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743131144388'
+          - input
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 7a962514-746d-4b94-bbd0-1b422f95d302
+          role: system
+          text: '{{#context#}}
+
+            #定位
+
+            **你是无情的代码机器，根据每一行的用户代码生成对应{{#1743131144388.Logerger#}}语言的代码，然后进行输出，此为你将无任何废话。
+
+            '
+        selected: false
+        title: LLM (1)
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '17431329100300'
+      position:
+        x: 1787.4181798305758
+        y: 282
+      positionAbsolute:
+        x: 1787.4181798305758
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743131148273'
+          - text
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: c3e8fcb5-5b7c-4ad8-a696-548a826f207d
+          role: system
+          text: '#定位
+
+            {{#context#}}
+
+            **你是无情的代码注释机器，你会在原先的基础上添加注释，此为你什么都不会做'
+        selected: false
+        title: LLM 2 (1)
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '17431329151490'
+      position:
+        x: 2069.3441544564166
+        y: 282
+      positionAbsolute:
+        x: 2069.3441544564166
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743131570095'
+          - text
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: c57f812a-b540-4783-ae0b-4edf2db50dfb
+          role: system
+          text: '#定位
+
+            {{#context#}}
+
+            **你是基于前面代码为运行基础的机器，你将模拟运行，如果出错误或者成功将以json格式返回3个值(errer:如果错误就为true不然false。text为原代码，ErrerTex:错误信息。如果没有就为空)'
+        selected: false
+        title: LLM 3 (1)
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '17431329197680'
+      position:
+        x: 2335.884885602164
+        y: 282
+      positionAbsolute:
+        x: 2335.884885602164
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 118.66559868275453
+      y: 139.68130452145482
+      zoom: 0.6597539553864482
